@@ -37,3 +37,12 @@ export const NODE_SECRET_NS = 'csi.storage.k8s.io/node-stage-secret-namespace';
 export const CONTROLLER_SECRET_NS =
   'csi.storage.k8s.io/controller-expand-secret-namespace';
 export const CEPH_NS_SESSION_STORAGE = 'odfConsole_scForm_cephNs';
+
+export enum CSI_DRIVER {
+  CEPH_FS = 'openshift-storage.cephfs.csi.ceph.com',
+}
+
+export enum VOLUME_SNAPSHOT_DELETION_POLICY {
+  Retain = 'Retain',
+  Delete = 'Delete',
+}

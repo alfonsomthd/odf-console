@@ -4,6 +4,10 @@ import {
   K8sKind,
   MatchExpression,
 } from '@openshift-console/dynamic-plugin-sdk/lib/api/common-types';
+import {
+  CSI_DRIVER,
+  VOLUME_SNAPSHOT_DELETION_POLICY,
+} from 'packages/ocs/constants';
 import { K8sResourceCondition } from './common';
 
 // The config is a JSON object with the NetworkAttachmentDefinitionConfig type stored as a string
@@ -386,4 +390,9 @@ export type ApplicationKind = K8sResourceCommon & {
   status?: {
     phase: string;
   };
+};
+
+export type VolumeGroupSnapshotClassKind = K8sResourceCommon & {
+  deletionPolicy: VOLUME_SNAPSHOT_DELETION_POLICY;
+  driver: CSI_DRIVER;
 };

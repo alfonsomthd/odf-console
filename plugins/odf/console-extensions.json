@@ -702,5 +702,40 @@
       "path": "/odf/resource/odf.openshift.io~v1alpha1~StorageSystem/create/~new",
       "component": { "$codeRef": "wizard.default" }
     }
+  },
+  {
+    "type": "console.flag/model",
+    "properties": {
+      "model": {
+        "group": "groupsnapshot.storage.k8s.io",
+        "version": "v1alpha1",
+        "kind": "VolumeGroupSnapshot"
+      },
+      "flag": "VOLUME_GROUP_SNAPSHOT"
+    }
+  },
+  {
+    "type": "console.navigation/href",
+    "properties": {
+      "id": "volumegroupsnapshotclass",
+      "insertAfter": "volumesnapshotcontents",
+      "section": "storage",
+      "name": "VolumeGroupSnapshotClasses",
+      "href": "/odf/vgsc"
+    },
+    "flags": {
+      "required": ["VOLUME_GROUP_SNAPSHOT"]
+    }
+  },
+  {
+    "type": "console.page/route",
+    "properties": {
+      "path": ["/odf/vgsc"],
+      "exact": false,
+      "component": { "$codeRef": "volumeGroupSnapshotClassListPage" }
+    },
+    "flags": {
+      "required": ["VOLUME_GROUP_SNAPSHOT"]
+    }
   }
 ]

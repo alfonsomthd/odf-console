@@ -653,6 +653,9 @@
   "Pool management tasks are not supported for default pool and Data Foundation's external mode.": "Pool management tasks are not supported for default pool and Data Foundation's external mode.",
   "Pool {{name}} was created with errors.": "Pool {{name}} was created with errors.",
   "Loading...": "Loading...",
+  "Create VolumeGroupSnapshotClass": "Create VolumeGroupSnapshotClass",
+  "Driver": "Driver",
+  "Deletion Policy": "Deletion Policy",
   "ObjectBucketClaim": "ObjectBucketClaim",
   "Use existing claim": "Use existing claim",
   "Create new claim": "Create new claim",
@@ -1241,7 +1244,7 @@
   "This is an Advanced subscription feature. It requires Advanced Edition subscription. Please contact the account team for more information.": "This is an Advanced subscription feature. It requires Advanced Edition subscription. Please contact the account team for more information.",
   "Advanced Subscription": "Advanced Subscription",
   "Dev preview": "Dev preview",
-  "Technology preview": "Technology preview",
+  "Tech preview": "Tech preview",
   "No datapoints found.": "No datapoints found.",
   "total limit": "total limit",
   "total requested": "total requested",
@@ -1413,5 +1416,9 @@
   "Cannot change resource name (original: \"{{name}}\", updated: \"{{newName}}\").": "Cannot change resource name (original: \"{{name}}\", updated: \"{{newName}}\").",
   "Cannot change resource namespace (original: \"{{namespace}}\", updated: \"{{newNamespace}}\").": "Cannot change resource namespace (original: \"{{namespace}}\", updated: \"{{newNamespace}}\").",
   "Cannot change resource kind (original: \"{{original}}\", updated: \"{{updated}}\").": "Cannot change resource kind (original: \"{{original}}\", updated: \"{{updated}}\").",
-  "Cannot change API group (original: \"{{apiGroup}}\", updated: \"{{newAPIGroup}}\").": "Cannot change API group (original: \"{{apiGroup}}\", updated: \"{{newAPIGroup}}\")."
+  "Cannot change API group (original: \"{{apiGroup}}\", updated: \"{{newAPIGroup}}\").": "Cannot change API group (original: \"{{apiGroup}}\", updated: \"{{newAPIGroup}}\").",
+  "RequiredXXX": "RequiredXXX",
+  "Technology preview": "Technology preview",
+  "VolumeGroupSnapshotClass": "VolumeGroupSnapshotClass",
+  "VolumeGroupSnapshotClasses": "VolumeGroupSnapshotClasses"
 }

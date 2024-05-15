@@ -261,3 +261,18 @@ export const StorageClusterModel: K8sKind = {
   id: 'ocscluster',
   crd: true,
 };
+
+export const VolumeGroupSnapshotClassModel: K8sModel = {
+  label: 'VolumeGroupSnapshotClass',
+  // t('VolumeGroupSnapshotClass')
+  apiVersion: 'v1alpha1',
+  apiGroup: 'groupsnapshot.storage.k8s.io',
+  plural: 'volumegroupsnapshotclasses',
+  abbr: 'VGSC',
+  namespaced: false,
+  kind: 'VolumeGroupSnapshotClass',
+  id: 'volumegroupsnapshotclass',
+  labelPlural: 'VolumeGroupSnapshotClasses',
+  // t('VolumeGroupSnapshotClasses')
+  crd: true,
+};
