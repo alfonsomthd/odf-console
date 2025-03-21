@@ -29,6 +29,7 @@ import {
 } from '@odf/shared/types';
 import { useCustomTranslation } from '@odf/shared/useCustomTranslationHook';
 import { Patch, k8sPatch } from '@openshift-console/dynamic-plugin-sdk';
+import * as _ from 'lodash-es';
 import {
   Alert,
   AlertVariant,
@@ -118,6 +119,7 @@ const ConfigurePerformanceModal: React.FC<ConfigurePerformanceModalProps> = ({
   const [resourceProfile, setResourceProfile] = React.useState<ResourceProfile>(
     storageCluster.spec.resourceProfile
   );
+  const clusterProfile = storageCluster?.spec?.resourceProfile;
   const [selectedNodes, setSelectedNodes] = React.useState<WizardNodeState[]>(
     []
   );
@@ -193,6 +195,14 @@ const ConfigurePerformanceModal: React.FC<ConfigurePerformanceModalProps> = ({
           selectedNodes={selectedNodes}
           osdAmount={osdAmount}
         />
+        {clusterProfile && (
+          <div className="pf-v5-u-font-size-md">
+            <span className="pf-v5-u-font-weight-bold pf-v5-u-mr-sm">
+              {t('Cluster current profile:')}
+            </span>
+            {_.capitalize(clusterProfile)}
+          </div>
+        )}
         <SelectNodesTable
           nodes={selectedNodes}
           onRowSelected={onRowSelected}
