@@ -853,5 +853,29 @@
         "$codeRef": "diskListPage.default"
       }
     }
+  },
+  {
+    "type": "console.navigation/href",
+    "properties": {
+      "id": "odfgeneraloverview",
+      "insertBefore": "persistentvolumes",
+      "section": "storage",
+      "name": "%plugin__odf-console~Overview%",
+      "href": "/odf/general-overview"
+    },
+    "flags": {
+      "required": ["ODF_MODEL", "ODF_ADMIN"]
+    }
+  },
+  {
+    "type": "console.page/route",
+    "properties": {
+      "path": "/odf/general-overview",
+      "exact": false,
+      "component": { "$codeRef": "overview.default" }
+    },
+    "flags": {
+      "required": ["ODF_MODEL", "ODF_ADMIN"]
+    }
   }
 ]

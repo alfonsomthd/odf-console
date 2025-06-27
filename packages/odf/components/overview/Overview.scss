@@ -1,0 +1,12 @@
+@import '@odf/shared/style.scss';
+
+.odf-general-overview__grid {
+  padding: $pf-v5-global-gutter;
+  @media(min-width: $pf-v5-global--breakpoint--xl) {
+    padding: $pf-v5-global-gutter--md;
+  }
+}
+
+.odf-general-overview__card {
+  border-radius: 15px;
+}
