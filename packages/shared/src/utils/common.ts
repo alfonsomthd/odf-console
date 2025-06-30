@@ -4,6 +4,7 @@ import {
   PLUGIN_NAME,
 } from '@odf/shared/constants/common';
 import {
+  ClusterVersionKind,
   InfraProviders,
   InfrastructureKind,
   K8sResourceKind,
@@ -177,6 +178,9 @@ export const getValidFilteredData = <T>(filteredData: T[]): T[] =>
 
 export const getOprVersionFromCSV = (operator: K8sResourceKind): string =>
   operator?.spec?.version || '';
+
+export const getClusterVersionChannel = (cv: ClusterVersionKind): string =>
+  cv?.spec?.channel;
 
 export const parseOprMajorMinorVersion = (version: string): string => {
   const majorMinorVersionRegex = /[0-9]+\.[0-9]+/;
