@@ -150,6 +150,17 @@ type CephDeviceClass = {
   name: string;
 };
 
+export type CephHealthCheckType = {
+  id: string;
+  details: string;
+  troubleshootLink?: string;
+};
+
+export type CephStatusDetail = {
+  message: string;
+  severity: string;
+};
+
 export type CephClusterKind = K8sResourceCommon & {
   status?: {
     storage?: {
@@ -162,6 +173,7 @@ export type CephClusterKind = K8sResourceCommon & {
       deviceClasses: CephDeviceClass[];
     };
     ceph?: {
+      details: Record<string, CephStatusDetail>;
       fsid?: string;
     };
     phase?: string;
