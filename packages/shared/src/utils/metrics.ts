@@ -1,6 +1,7 @@
 import {
   Humanize,
   PrometheusResponse,
+  PrometheusResult,
 } from '@openshift-console/dynamic-plugin-sdk';
 import { Alert, PrometheusLabels } from '@openshift-console/dynamic-plugin-sdk';
 import * as _ from 'lodash-es';
@@ -19,6 +20,17 @@ export const getResiliencyProgress = (results: PrometheusResponse): number => {
   const progress: string = getGaugeValue(results);
   return parseFloat(progress);
 };
+
+export const getStorageClusterMetric = (
+  metric: PrometheusResponse,
+  clusterName: string,
+  clusterNamespace: string
+): PrometheusResult =>
+  metric?.data?.result?.find(
+    (value) =>
+      value.metric.managedBy === clusterName &&
+      value.metric.namespace === clusterNamespace
+  );
 
 export type DataPoint<X = Date | number | string> = {
   x?: X;
