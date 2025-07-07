@@ -1,9 +1,11 @@
 @import '@odf/shared/style.scss';
 
 .odf-general-overview__grid {
-  padding: $pf-v5-global-gutter;
+  padding-left: $pf-v5-global-gutter;
+  padding-right: $pf-v5-global-gutter;
   @media(min-width: $pf-v5-global--breakpoint--xl) {
-    padding: $pf-v5-global-gutter--md;
+  padding-left: $pf-v5-global-gutter--md;
+  padding-right: $pf-v5-global-gutter--md;
   }
 }
 

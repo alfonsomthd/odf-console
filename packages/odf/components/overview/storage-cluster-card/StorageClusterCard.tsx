@@ -64,8 +64,8 @@ import {
   Grid,
   GridItem,
 } from '@patternfly/react-core';
-import './StorageClusterCard.scss';
 import { ArrowRightIcon } from '@patternfly/react-icons';
+import './StorageClusterCard.scss';
 
 const generalColorScale = [general1.value, general2.value];
 const warningColorScale = [warning1.value, general2.value];

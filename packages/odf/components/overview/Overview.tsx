@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GeneralOverviewActivityCard } from '@odf/core/components/overview/activity-card/GeneralOverviewActivityCard';
+import { ObjectStorageCard } from '@odf/core/components/overview/object-storage-card/ObjectStorageCard';
 import { StorageClusterCard } from '@odf/core/components/overview/storage-cluster-card/StorageClusterCard';
 import { PageHeading, useCustomTranslation } from '@odf/shared';
 import { Helmet } from 'react-helmet';
@@ -20,11 +21,11 @@ const Overview: React.FC = () => {
         <GridItem md={8} sm={12}>
           <StorageClusterCard className="odf-general-overview__card" />
         </GridItem>
-        <GridItem md={4} rowSpan={2} sm={12}>
+        <GridItem md={4} rowSpan={3} sm={12}>
           <GeneralOverviewActivityCard className="odf-general-overview__card" />
         </GridItem>
-        <GridItem md={4} sm={12}>
-          Object storage
+        <GridItem md={8} sm={12}>
+          <ObjectStorageCard className="odf-general-overview__card" />
         </GridItem>
       </Grid>
     </>

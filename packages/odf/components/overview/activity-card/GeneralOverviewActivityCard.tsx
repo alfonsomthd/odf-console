@@ -28,11 +28,14 @@ export const GeneralOverviewActivityCard: React.FC<CardProps> = ({
     useK8sWatchResource<EventKind[]>(eventsResource);
 
   return (
-    <Card className={classNames(className)} isFlat={true}>
+    <Card
+      className={classNames(className, 'odf-general-overview__activity-card')}
+      isFlat={true}
+    >
       <CardHeader>
         <CardTitle>{t('Activity')}</CardTitle>
       </CardHeader>
-      <CardBody className="odf-general-overview__activity-card">
+      <CardBody className="odf-general-overview__activity-card-body">
         <RecentEventsBody
           events={{
             data,
