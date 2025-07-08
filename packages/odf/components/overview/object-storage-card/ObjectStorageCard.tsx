@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { ObjectStorageOverviewQueries } from '@odf/ocs/queries/object-storage';
 import { PrometheusMultilineUtilizationItem } from '@odf/shared/dashboards/utilization-card/prometheus-multi-utilization-item';
-// import {
-//   useCustomPrometheusPoll,
-//   usePrometheusBasePath,
-// } from '@odf/shared/hooks/custom-prometheus-poll';
+import {
+  useCustomPrometheusPoll,
+  usePrometheusBasePath,
+} from '@odf/shared/hooks/custom-prometheus-poll';
 import { useCustomTranslation } from '@odf/shared/useCustomTranslationHook';
 import { humanizeNumber } from '@odf/shared/utils/humanize';
+import { parseMetricData } from '@odf/shared/utils/metrics';
 import { QueryWithDescription } from '@openshift-console/dynamic-plugin-sdk';
 import { UtilizationDurationDropdown } from '@openshift-console/dynamic-plugin-sdk-internal';
 import classNames from 'classnames';
@@ -19,6 +20,10 @@ import {
   CardHeader,
   CardProps,
   CardTitle,
+  DescriptionList,
+  DescriptionListDescription,
+  DescriptionListGroup,
+  DescriptionListTerm,
 } from '@patternfly/react-core';
 import { ArrowRightIcon } from '@patternfly/react-icons';
 import './ObjectStorageCard.scss';
@@ -36,13 +41,17 @@ const BUCKETS_PROVISIONED_QUERIES: [
 
 export const ObjectStorageCard: React.FC<CardProps> = ({ className }) => {
   const { t } = useCustomTranslation();
+  const [nbBucketsData, nbBucketsError, nbBucketsLoading] =
+    useCustomPrometheusPoll({
+      query: ObjectStorageOverviewQueries.NOOBAA_BUCKETS_PROVISIONED,
+      endpoint: 'api/v1/query' as any,
+      basePath: usePrometheusBasePath(),
+    });
 
-  // const [usedCapacity, usedCapacityError, usedCapacityLoading] =
-  //   useCustomPrometheusPoll({
-  //     query: CAPACITY_QUERIES[StorageDashboard.USED_CAPACITY_FILE_BLOCK],
-  //     endpoint: 'api/v1/query' as any,
-  //     basePath: usePrometheusBasePath(),
-  //   });
+  const nbBuckets =
+    _.isEmpty(nbBucketsError) && !nbBucketsLoading
+      ? parseMetricData(nbBucketsData, humanizeNumber)[0]?.usedValue.value
+      : 0;
 
   return (
     <Card className={classNames(className)} isFlat={true}>
@@ -56,8 +65,22 @@ export const ObjectStorageCard: React.FC<CardProps> = ({ className }) => {
         </CardTitle>
       </CardHeader>
       <CardBody className="odf-cluster-card__body">
+        <DescriptionList>
+          <DescriptionListGroup>
+            <DescriptionListTerm>
+              {t('Buckets provisioned')}
+            </DescriptionListTerm>
+            <DescriptionListDescription>{nbBuckets}</DescriptionListDescription>
+          </DescriptionListGroup>
+          {/* <DescriptionListGroup>
+            <DescriptionListTerm>{t('Size')}</DescriptionListTerm>
+            <DescriptionListDescription>
+              {''}
+            </DescriptionListDescription>
+          </DescriptionListGroup> */}
+        </DescriptionList>
         <PrometheusMultilineUtilizationItem
-          title={t('Buckets provisioned')}
+          title={''}
           queries={BUCKETS_PROVISIONED_QUERIES}
           humanizeValue={humanizeNumber}
           chartType="grouped-line"

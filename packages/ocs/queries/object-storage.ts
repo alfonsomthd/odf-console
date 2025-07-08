@@ -229,7 +229,7 @@ export enum ObjectStorageEfficiencyQueries {
 }
 
 export enum ObjectStorageOverviewQueries {
-  NOOBAA_BUCKETS_PROVISIONED = 'NooBaa_num_buckets',
+  NOOBAA_BUCKETS_PROVISIONED = 'job:noobaa_bucket_count:sum',
 }
 
 export enum StatusCardQueries {
