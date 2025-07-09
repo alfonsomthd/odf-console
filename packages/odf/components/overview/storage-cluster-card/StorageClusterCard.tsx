@@ -3,6 +3,8 @@ import {
   CAPACITY_QUERIES,
   StorageDashboard,
 } from '@odf/core/components/odf-dashboard/queries';
+import { EmptyCardBody } from '@odf/core/components/overview/empty-state/EmptyCardBody';
+import { CREATE_SS_PAGE_URL } from '@odf/core/constants/common';
 import { useODFNamespaceSelector } from '@odf/core/redux/selectors';
 import {
   clusterVersionResource,
@@ -21,7 +23,6 @@ import {
   ODF_OPERATOR,
   resourceStatus,
   Status,
-  StatusBox,
   StorageClusterKind,
   useFetchCsv,
 } from '@odf/shared';
@@ -84,10 +85,7 @@ export const StorageClusterCard: React.FC<CardProps> = ({ className }) => {
   const [clusterVersionData, clusterVersionLoaded, clusterVersionError] =
     useK8sWatchResource<ClusterVersionKind>(clusterVersionResource);
 
-  const storageCluster: StorageClusterKind = getStorageClusterInNs(
-    storageClusters,
-    odfNamespace
-  );
+  const storageCluster = getStorageClusterInNs(storageClusters, odfNamespace);
   const clusterName = getName(storageCluster);
   const [usedCapacity, usedCapacityError, usedCapacityLoading] =
     useCustomPrometheusPoll({
@@ -179,6 +177,9 @@ export const StorageClusterCard: React.FC<CardProps> = ({ className }) => {
     return generalColorScale;
   }, [capacityRatio]);
 
+  const showContent =
+    storageClustersLoaded && _.isEmpty(storageClustersError) && storageCluster;
+
   return (
     <Card className={classNames(className)} isFlat={true}>
       <CardHeader>
@@ -187,7 +188,7 @@ export const StorageClusterCard: React.FC<CardProps> = ({ className }) => {
         </CardTitle>
       </CardHeader>
       <CardBody className="odf-cluster-card__body">
-        {storageClustersLoaded && !storageClustersError ? (
+        {showContent ? (
           <Grid hasGutter>
             <GridItem md={4} sm={12}>
               <DescriptionList>
@@ -281,9 +282,13 @@ export const StorageClusterCard: React.FC<CardProps> = ({ className }) => {
             </GridItem>
           </Grid>
         ) : (
-          <StatusBox
-            loaded={storageClustersLoaded}
-            loadError={storageClustersError}
+          <EmptyCardBody
+            actionHref={CREATE_SS_PAGE_URL}
+            actionText={t('Setup local storage cluster')}
+            bodyContent={t(
+              'You can view capacity usage here once your local storage has been configured.'
+            )}
+            headerText={t('Storage cluster is not configured')}
           />
         )}
       </CardBody>

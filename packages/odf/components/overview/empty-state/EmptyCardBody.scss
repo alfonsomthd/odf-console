@@ -1,0 +1,6 @@
+.odf-empty-card {
+  &__action {
+    text-decoration: none;
+      --pf-v5-c-button--after--BorderRadius: var(--pf-v5-global--BorderRadius--lg);
+  }
+}
